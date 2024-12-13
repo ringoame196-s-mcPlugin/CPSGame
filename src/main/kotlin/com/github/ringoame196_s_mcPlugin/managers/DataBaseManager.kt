@@ -6,7 +6,7 @@ import java.sql.PreparedStatement
 import java.sql.SQLException
 import java.sql.Statement
 
-class DataBaseManager() {
+object DataBaseManager {
     fun runSQLCommand(dbFilePath: String, command: String, parameters: List<Any>? = null) {
         val statement: Statement?
         var connection: Connection? = null
@@ -60,7 +60,37 @@ class DataBaseManager() {
         return value
     }
 
-    private fun connection(dbFilePath: String): Statement? {
+    fun acquisitionStringInt(dbFilePath: String, sql: String, parameters: List<Any>, label: String): Int? {
+        var value: Int? = null
+        val statement: Statement?
+        var connection: Connection? = null
+        val preparedStatement: PreparedStatement?
+        try {
+            statement = connection(dbFilePath) // 接続
+            connection = statement?.connection
+            preparedStatement = connection?.prepareStatement(sql)
+
+            // パラメータをバインド
+            parameters.forEachIndexed { index, param ->
+                preparedStatement?.setObject(index + 1, param)
+            }
+
+            val resultSet = preparedStatement?.executeQuery()
+            value = if (resultSet != null && resultSet.next()) {
+                resultSet.getInt(label)
+            } else {
+                null // 結果が存在しない場合はnullを返す
+            }
+        } catch (e: SQLException) {
+            // エラーハンドリング
+            println("SQL Error: ${e.message}")
+        } finally {
+            disconnect(connection) // 切断
+        }
+        return value
+    }
+
+    fun connection(dbFilePath: String): Statement? {
         val connection = DriverManager.getConnection("jdbc:sqlite:$dbFilePath")
         // SQLステートメントの作成
         val statement = connection.createStatement()
