@@ -8,15 +8,20 @@ object CpsGameDataManager {
         val score = acquisitionScore(playerUUID)
         if (score >= registerScore) return // scoreが更新したときのみ値を保存する
         val command = "INSERT INTO ${Data.TABLE_NAME} (${Data.ID_KEY}, ${Data.SCORE_KEY}) VALUES (?, ?) ON CONFLICT(${Data.ID_KEY}) DO UPDATE SET ${Data.SCORE_KEY} = excluded.${Data.SCORE_KEY};"
-        DataBaseManager.runSQLCommand(Data.tableFileName ?: return, command, mutableListOf(playerUUID, score))
+        DataBaseManager.runSQLCommand(command, mutableListOf(playerUUID, score))
     }
 
     fun acquisitionScore(searchId: String): Int {
         val command = "SELECT ${Data.SCORE_KEY} FROM ${Data.TABLE_NAME} WHERE ${Data.ID_KEY} = ?;"
-        return DataBaseManager.acquisitionStringInt(Data.tableFileName ?: return 0, command, mutableListOf(searchId), Data.ID_KEY) ?: 0
+        return DataBaseManager.acquisitionStringInt(command, mutableListOf(searchId), Data.ID_KEY) ?: 0
     }
 
     fun acquisitionBestScore(): Int {
         return acquisitionScore(Data.BEST_SCORE_ID)
+    }
+
+    fun updateBestScore(score: Int) {
+        val command = "UPDATE ${Data.TABLE_NAME} SET ${Data.SCORE_KEY} = ? WHERE ${Data.ID_KEY} = ${Data.BEST_SCORE_ID};"
+        DataBaseManager.runSQLCommand(command, mutableListOf(score))
     }
 }
