@@ -1,4 +1,4 @@
-package com.github.ringoame196_s_mcPlugin
+package com.github.ringoame196_s_mcPlugin.datas
 
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player

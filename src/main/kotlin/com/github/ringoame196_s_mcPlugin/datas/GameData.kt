@@ -1,5 +1,6 @@
-package com.github.ringoame196_s_mcPlugin
+package com.github.ringoame196_s_mcPlugin.datas
 
+import com.github.ringoame196_s_mcPlugin.BossBar
 import org.bukkit.entity.Player
 
 data class GameData(

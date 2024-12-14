@@ -1,5 +1,6 @@
 package com.github.ringoame196_s_mcPlugin
 
+import com.github.ringoame196_s_mcPlugin.datas.Data
 import com.github.ringoame196_s_mcPlugin.managers.CpsGameManager
 import com.github.ringoame196_s_mcPlugin.managers.DataManager
 import org.bukkit.scheduler.BukkitRunnable

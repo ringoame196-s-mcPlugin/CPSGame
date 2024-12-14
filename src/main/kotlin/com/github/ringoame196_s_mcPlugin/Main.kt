@@ -2,6 +2,7 @@ package com.github.ringoame196_s_mcPlugin
 
 import com.github.ringoame196_s_mcPlugin.commands.Command
 import com.github.ringoame196_s_mcPlugin.commands.TabCompleter
+import com.github.ringoame196_s_mcPlugin.datas.Data
 import com.github.ringoame196_s_mcPlugin.events.EntityDamageByEntityEvent
 import com.github.ringoame196_s_mcPlugin.events.PlayerInteractEntityEvent
 import com.github.ringoame196_s_mcPlugin.managers.DataManager
@@ -12,13 +13,13 @@ class Main : JavaPlugin() {
 
     override fun onEnable() {
         super.onEnable()
-        saveDefaultConfig()
 
         // database関係
         saveResource("cpsgame_data.db", false)
         DataManager.registerTableFileName("${plugin.dataFolder.path}/cpsgame_data.db")
 
         // config
+        saveDefaultConfig()
         Data.limitTime = config.getInt("limit_time")
 
         // マイクライベント

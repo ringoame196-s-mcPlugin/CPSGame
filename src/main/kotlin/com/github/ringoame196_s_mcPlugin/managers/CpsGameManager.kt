@@ -1,6 +1,6 @@
 package com.github.ringoame196_s_mcPlugin.managers
 
-import com.github.ringoame196_s_mcPlugin.Data
+import com.github.ringoame196_s_mcPlugin.datas.Data
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Location

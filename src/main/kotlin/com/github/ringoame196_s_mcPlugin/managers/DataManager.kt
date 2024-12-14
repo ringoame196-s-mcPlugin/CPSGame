@@ -1,8 +1,8 @@
 package com.github.ringoame196_s_mcPlugin.managers
 
 import com.github.ringoame196_s_mcPlugin.BossBar
-import com.github.ringoame196_s_mcPlugin.Data
-import com.github.ringoame196_s_mcPlugin.GameData
+import com.github.ringoame196_s_mcPlugin.datas.Data
+import com.github.ringoame196_s_mcPlugin.datas.GameData
 import org.bukkit.entity.Player
 
 object DataManager {

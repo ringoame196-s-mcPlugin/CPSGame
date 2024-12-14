@@ -1,6 +1,6 @@
 package com.github.ringoame196_s_mcPlugin.managers
 
-import com.github.ringoame196_s_mcPlugin.Data
+import com.github.ringoame196_s_mcPlugin.datas.Data
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.PreparedStatement
@@ -61,7 +61,7 @@ object DataBaseManager {
         return value
     }
 
-    fun connection(): Statement? {
+    private fun connection(): Statement? {
         val connection = DriverManager.getConnection("jdbc:sqlite:${Data.tableFileName ?: return null}")
         // SQLステートメントの作成
         val statement = connection.createStatement()

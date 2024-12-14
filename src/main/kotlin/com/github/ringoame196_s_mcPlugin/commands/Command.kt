@@ -1,6 +1,6 @@
 package com.github.ringoame196_s_mcPlugin.commands
 
-import com.github.ringoame196_s_mcPlugin.Data
+import com.github.ringoame196_s_mcPlugin.datas.Data
 import com.github.ringoame196_s_mcPlugin.managers.CpsGameDataManager
 import com.github.ringoame196_s_mcPlugin.managers.CpsGameManager
 import org.bukkit.ChatColor
@@ -71,9 +71,8 @@ class Command : CommandExecutor {
         val rayTraceResult = player.world.rayTraceEntities(
             player.eyeLocation,
             player.location.direction,
-            maxDistance,
-            { entity -> entity != player }
-        )
+            maxDistance
+        ) { entity -> entity != player }
 
         return rayTraceResult?.hitEntity
     }

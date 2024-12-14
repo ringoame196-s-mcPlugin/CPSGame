@@ -1,6 +1,6 @@
 package com.github.ringoame196_s_mcPlugin.managers
 
-import com.github.ringoame196_s_mcPlugin.Data
+import com.github.ringoame196_s_mcPlugin.datas.Data
 
 object CpsGameDataManager {
 
