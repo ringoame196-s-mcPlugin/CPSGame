@@ -43,6 +43,11 @@ class Command : CommandExecutor {
         sender.sendMessage(message)
     }
     private fun summonCommand(sender: Player) {
+        if (!sender.isOp) {
+            val message = "${ChatColor.RED}権限がありません"
+            sender.sendMessage(message)
+            return
+        }
         val targetBlock = sender.getTargetBlockExact(8)
 
         if (targetBlock != null) {
@@ -55,6 +60,11 @@ class Command : CommandExecutor {
         }
     }
     private fun deleteCommand(sender: Player) {
+        if (!sender.isOp) {
+            val message = "${ChatColor.RED}権限がありません"
+            sender.sendMessage(message)
+            return
+        }
         val entity = acquisitionEntityInPlayerSight(sender)
         if (entity != null && cpsGameManager.isCpsGameTarget(entity)) {
             val message = "${ChatColor.RED}削除しました"
