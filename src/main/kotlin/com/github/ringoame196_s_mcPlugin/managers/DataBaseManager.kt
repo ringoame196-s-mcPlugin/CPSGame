@@ -31,7 +31,7 @@ object DataBaseManager {
         }
     }
 
-    fun acquisitionStringInt(sql: String, parameters: List<Any>, label: String): Int? {
+    fun acquisitionIntValue(sql: String, parameters: List<Any>, label: String): Int? {
         var value: Int? = null
         val statement: Statement?
         var connection: Connection? = null
