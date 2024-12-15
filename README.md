@@ -14,9 +14,12 @@ CPSゲームをすることができるプラグイン
 | /cpsgame delete | ターゲットを削除 | OP    |
 
 ## configファイル
-| key名   |     説明      | デフォルト値 |
-| --- | ----------- | ------ |
-| limit_time | 制限時間 | 10 |
+| key名                 | 説明            | デフォルト値 |
+|----------------------|---------------| ------ |
+| limit_time           | 制限時間          | 10 |
+| is_write_scoreboard  | スコアボードに保存するか  | false |
+|scoreboard_name| 保存するスコアボードの名前 | "" |
+| scoreboard_display_name | 保存するスコアボードのディスプレイ名前 |  |
  
 ## 開発環境
 - Minecraft Version : 1.20.1
