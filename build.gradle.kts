@@ -47,7 +47,7 @@ configure<BukkitPluginDescription> {
     commands {
         register("cpsgame") {
             description = "CPSGameの管理コマンド"
-            usage = "/cpsgame <サブコマンド>"
+            usage = "/cpsgame <show,summon,delete>"
         }
     }
 }
