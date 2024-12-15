@@ -18,5 +18,9 @@ object Data {
 
     // ゲームデータ
     val gameData: MutableMap<Player, GameData> = mutableMapOf()
-    var limitTime: Int = 0
+
+    // config系
+    var limitTime: Int = 10
+    var scoreboardName: String = ""
+    var isWriteToScoreboard = false
 }

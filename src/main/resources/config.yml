@@ -1,1 +1,4 @@
 limit_time : 10
+is_write_scoreboard : false
+scoreboard_name : ""
+scoreboard_display_name :
