@@ -3,7 +3,9 @@ package com.github.ringoame196_s_mcPlugin.managers
 import com.github.ringoame196_s_mcPlugin.datas.Data
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
+import org.bukkit.DyeColor
 import org.bukkit.Location
+import org.bukkit.Particle
 import org.bukkit.Sound
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
@@ -27,9 +29,11 @@ class CpsGameManager {
         val clickCount = DataManager.acquisitionClickCount(player)
 
         val message = "${ChatColor.GOLD}[結果] ${clickCount}${Data.UNIT_NAME}しました"
-        val sound = Sound.BLOCK_ANVIL_USE
+        val sound = Sound.ENTITY_GENERIC_EXPLODE
+        val particle = Particle.EXPLOSION_LARGE
         player.sendMessage(message)
         player.playSound(player, sound, 1f, 1f)
+        player.spawnParticle(particle, player.location, 10, 0.5, 0.5, 0.5, 0.1)
 
         DataManager.deleteGameData(player)
         saveScore(player, clickCount)
@@ -39,6 +43,8 @@ class CpsGameManager {
         val playerUUID = player.uniqueId.toString()
         val playerScore = CpsGameDataManager.acquisitionScore(playerUUID)
         val bestScore = CpsGameDataManager.acquisitionBestScore()
+
+        if (Data.isWriteToScoreboard) writeScoreBoard(player, score)
 
         if (playerScore >= score) return // 自己ベスト更新していなければ保存しない
         sendSelfBest(player)
@@ -62,17 +68,29 @@ class CpsGameManager {
         Bukkit.broadcastMessage(message)
     }
 
+    private fun writeScoreBoard(player: Player, score: Int) {
+        val scoreBoardManager = ScoreBoardManager()
+        val playerName = player.name
+        scoreBoardManager.setValue(Data.scoreboardName, playerName, score)
+    }
+
     fun summonCpsArmorStand(location: Location) {
         val world = location.world
-        // アーマースタンドを召喚
         val target = world?.spawn(location, Shulker::class.java)
         target?.let {
-            // アーマースタンドの設定
             it.setAI(false)
             it.customName = Data.TARGET_NAME
             it.isCustomNameVisible = true
             it.scoreboardTags.add(Data.TARGET_TAG)
         }
+    }
+
+    fun changeShulkerColor(shulker: Shulker) {
+        val currentColor = shulker.color
+        val colorList = DyeColor.values()
+        val currentIndex = colorList.indexOf(currentColor)
+        val nextIndex = (currentIndex + 1) % colorList.size
+        shulker.color = colorList[nextIndex]
     }
 
     fun isCpsGameTarget(entity: Entity): Boolean {
