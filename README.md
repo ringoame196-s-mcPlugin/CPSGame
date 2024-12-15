@@ -4,6 +4,12 @@
 CPSゲームをすることができるプラグイン <br>
 左右クリック対応
 
+
+https://github.com/user-attachments/assets/a1039437-8bb6-4ab4-b295-4578e03c4032
+
+
+
+
 ## プラグインダウンロード
 [ダウンロードリンク](https://github.com/ringoame196-s-mcPlugin/CPSGame/releases/latest)
 
