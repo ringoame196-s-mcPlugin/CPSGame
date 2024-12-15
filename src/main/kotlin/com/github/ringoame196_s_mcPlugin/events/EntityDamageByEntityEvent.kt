@@ -2,6 +2,7 @@ package com.github.ringoame196_s_mcPlugin.events
 
 import com.github.ringoame196_s_mcPlugin.managers.CpsGameManager
 import org.bukkit.entity.Player
+import org.bukkit.entity.Shulker
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageByEntityEvent
@@ -12,9 +13,10 @@ class EntityDamageByEntityEvent : Listener {
     @EventHandler
     fun onEntityDamageByEntity(e: EntityDamageByEntityEvent) {
         val player = e.damager as? Player ?: return
-        val entity = e.entity
+        val entity = e.entity as? Shulker ?: return
         if (!cpsGameManager.isCpsGameTarget(entity)) return
         e.isCancelled = true
         cpsGameManager.additionClick(player)
+        cpsGameManager.changeShulkerColor(entity)
     }
 }
