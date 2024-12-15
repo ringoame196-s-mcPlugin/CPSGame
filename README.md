@@ -1,7 +1,8 @@
 # CPSGame
 
 ## プラグイン説明
-CPSゲームをすることができるプラグイン
+CPSゲームをすることができるプラグイン <br>
+左右クリック対応
 
 ## プラグインダウンロード
 [ダウンロードリンク](https://github.com/ringoame196-s-mcPlugin/CPSGame/releases/latest)
